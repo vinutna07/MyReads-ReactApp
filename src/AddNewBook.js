@@ -12,6 +12,11 @@ class AddNewBook extends Component {
     }
 
     updateQuery = (query) => {
+        if (query=== ""){
+            this.setState({
+                booksDisplayed: []
+            })
+            return;}
         BooksAPI.search(query).then(data => {
             if (data !== undefined && data.error !== "empty query") {
                 this.setState({
