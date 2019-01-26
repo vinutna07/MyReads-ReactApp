@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Switch, Route, Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI';
 import AddNewBook from './AddNewBook';
 import BookList from './BookList';
@@ -54,16 +54,18 @@ class BookHandler extends Component {
     render() {
         return (
             <div>
-                <Route exact path="/" render={() => (<BookList
-                    currentlyReading={this.state.currentlyReading}
-                    wantToRead={this.state.wantToRead}
-                    read={this.state.read}
-                    handleChange={this.handleChange}
-                />)} />
-                <Route path="/search" render={() => (<AddNewBook
-                    handleChange={this.handleChange}
-                    books={this.state.books}
-                />)} />
+                <Switch>
+                    <Route exact path="/" render={() => (<BookList
+                        currentlyReading={this.state.currentlyReading}
+                        wantToRead={this.state.wantToRead}
+                        read={this.state.read}
+                        handleChange={this.handleChange}
+                    />)} />
+                    <Route path="/search" render={() => (<AddNewBook
+                        handleChange={this.handleChange}
+                        books={this.state.books}
+                    />)} />
+                </Switch>
                 <Link
                     to='/search'>
                     <div className="open-search" >
